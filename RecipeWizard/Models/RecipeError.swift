@@ -7,4 +7,5 @@
 
 enum RecipeError: Error {
     case failureFetchingRecipes
+    case failureFetchingImage
 }

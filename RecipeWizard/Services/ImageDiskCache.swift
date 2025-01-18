@@ -15,6 +15,9 @@ actor ImageDiskCache {
     init(fileManager: FileManagerProtocol = FileManager.default) {
         self.fileManager = fileManager
         self.recipeWizardCacheURL = fileManager.recipeWizardCacheURL()
+        if ProcessInfo.processInfo.environment["resetCacheAtStart"] == "true" {
+                try? fileManager.removeItem(url: recipeWizardCacheURL)
+        }
     }
     
     func getImage(id: String) -> UIImage? {
@@ -55,8 +58,3 @@ actor ImageDiskCache {
         recipeWizardCacheURL.appendingPathComponent("\(id).jpg")
     }
 }
-
-
-
-
-

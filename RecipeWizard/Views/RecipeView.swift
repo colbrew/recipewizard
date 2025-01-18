@@ -12,21 +12,8 @@ struct RecipeView: View {
     
     var body: some View {
         HStack{
-            Spacer()
             VStack(alignment: .center) {
-                AsyncImage(url: recipe.photoURL){ image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .containerRelativeFrame(.horizontal) { size, axis in
-                            size * 0.9}
-                } placeholder: {
-                    ProgressView()
-                        .scaledToFit()
-                        .containerRelativeFrame(.horizontal) { size, axis in
-                            size * 0.9}
-                }
-                .aspectRatio(contentMode: .fit)
+                RecipeImageView(recipe: recipe)
                 HStack {
                     Text(recipe.name)
                         .font(.title3)
@@ -35,7 +22,8 @@ struct RecipeView: View {
                         .font(.headline)
                 }
             }
-            Spacer()
+            .containerRelativeFrame(.horizontal) { size, axis in
+                size * 0.9}
         }
     }
 }
