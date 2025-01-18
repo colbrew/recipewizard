@@ -12,16 +12,16 @@ import Testing
 struct ImageDiskCacheTests {
     let sut: ImageDiskCache
     let testImage = UIImage(named: "cake")!
-    let fileManager = MockFileManager()
+    let mockFileManager = MockFileManager()
     
     init() throws {
-        sut = ImageDiskCache(fileManager: fileManager)
+        sut = ImageDiskCache(fileManager: mockFileManager)
     }
     
     @Test func testSaveImage() async throws {
         await sut.saveImage(id: "1", image: testImage)
-        let imageURL = fileManager.recipeWizardCacheURL().appendingPathComponent("1.jpg", conformingTo: .fileURL)
-        let fileExists = fileManager.fileExists(url: imageURL)
+        let imageURL = mockFileManager.recipeWizardCacheURL().appendingPathComponent("1.jpg", conformingTo: .fileURL)
+        let fileExists = mockFileManager.fileExists(url: imageURL)
         #expect(fileExists)
     }
 
@@ -40,9 +40,9 @@ struct ImageDiskCacheTests {
         await sut.saveImage(id: "1", image: testImage)
         await sut.saveImage(id: "2", image: testImage)
         await sut.deleteImage(id: "1")
-        let image1Exists = fileManager.fileExists(url: imageURL(name: "1.jpg"))
+        let image1Exists = mockFileManager.fileExists(url: imageURL(name: "1.jpg"))
         print("1 \(image1Exists)")
-        let image2Exists = fileManager.fileExists(url: imageURL(name: "2.jpg"))
+        let image2Exists = mockFileManager.fileExists(url: imageURL(name: "2.jpg"))
         print("2 \(image1Exists)")
         #expect(!image1Exists)
         #expect(image2Exists)
@@ -52,14 +52,14 @@ struct ImageDiskCacheTests {
         await sut.saveImage(id: "1", image: testImage)
         await sut.saveImage(id: "2", image: testImage)
         await sut.saveImage(id: "3", image: testImage)
-        let existsBeforeDelete = fileManager.fileExists(url: fileManager.recipeWizardCacheURL())
+        let existsBeforeDelete = mockFileManager.fileExists(url: mockFileManager.recipeWizardCacheURL())
         #expect(existsBeforeDelete)
         await sut.deleteCache()
-        let existsAfterDelete = fileManager.fileExists(url: fileManager.recipeWizardCacheURL())
+        let existsAfterDelete = mockFileManager.fileExists(url: mockFileManager.recipeWizardCacheURL())
         #expect(!existsAfterDelete)
     }
     
     func imageURL(name: String) -> URL {
-        return fileManager.recipeWizardCacheURL().appendingPathComponent(name)
+        return mockFileManager.recipeWizardCacheURL().appendingPathComponent(name)
     }
 }
