@@ -5,9 +5,9 @@
 //  Created by Daniel Colman on 1/18/25.
 //
 
-import UIKit
-import Testing
 @testable import RecipeWizard
+import Testing
+import UIKit
 
 struct ImageLoaderTests {
 

@@ -8,7 +8,7 @@
 import SwiftUI
 struct CuisineFilterView: View {
     @Binding var homeVM: HomeViewModel
-    let cuisineTypes = ["All", "British", "Malaysian"]
+
     var body: some View {
         Menu("Cuisine Type") {
             Picker(selection: $homeVM.filter, label: Text("Cuisine Type")) {

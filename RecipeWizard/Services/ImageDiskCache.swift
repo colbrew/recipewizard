@@ -21,14 +21,14 @@ actor ImageDiskCache: ImageDiskCacheProtocol {
         let checkCacheReset = false
         #endif
         if checkCacheReset && ProcessInfo.processInfo.environment["resetCacheAtStart"] == "true" {
-                try? fileManager.removeItem(url: recipeWizardCacheURL)
+                try? fileManager.removeItem(at: recipeWizardCacheURL)
                 URLCache.shared.removeAllCachedResponses()
         }
     }
     
     func getImage(id: String) -> UIImage? {
         setupDirectory()
-        if let data = fileManager.contents(url: imageURL(id: id)) {
+        if let data = fileManager.contents(atPath: imageURL(id: id).path()) {
             return UIImage(data: data)
         }
 
@@ -39,22 +39,27 @@ actor ImageDiskCache: ImageDiskCacheProtocol {
         setupDirectory()
 
         if let data = image.jpegData(compressionQuality: 1.0) {
-            fileManager.createFile(url: imageURL(id: id), contents: data)
+            let imageSaved = fileManager.createFile(atPath: imageURL(id: id).path(), contents: data, attributes: nil)
+            if !imageSaved {
+                print("Unable to save image")
+            }
         }
     }
 
     func deleteImage(id: String) {
         setupDirectory()
-        try? fileManager.removeItem(url: imageURL(id: id))
+        try? fileManager.removeItem(at: imageURL(id: id))
     }
 
     func deleteCache() {
-        try? fileManager.removeItem(url: recipeWizardCacheURL)
+        try? fileManager.removeItem(at: recipeWizardCacheURL)
     }
 
     private func setupDirectory() {
         do {
-            try fileManager.createDirectory(url: recipeWizardCacheURL)
+            try fileManager.createDirectory(at: recipeWizardCacheURL,
+                                            withIntermediateDirectories: true,
+                                            attributes: nil)
         } catch {
             print("unable to create directory")
         }

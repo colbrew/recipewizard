@@ -9,21 +9,21 @@ import SwiftUI
 
 @Observable
 class HomeViewModel {
-    private let recipesURL = URL(string: "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json")!
     let imageLoader = ImageLoader()
-    
+
     var recipes = [Recipe]()
-    var cuisines: Set<String> = ["All"]
-    var loadingState: LoadingState = .loading
     var filteredRecipes: [Recipe] {
         if filter == "All" {
             return recipes
         }
         return recipes.filter { $0.cuisine == filter }
     }
-    var loadFailure = false
+    var cuisines: Set<String> = ["All"]
+    var loadingState: LoadingState = .loading
     var filter: String = "All"
-    
+
+    private let recipesURL = URL(string: "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json")!
+
     func loadData() async {
         loadingState = .loading
         do {

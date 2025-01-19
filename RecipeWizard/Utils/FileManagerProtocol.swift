@@ -8,10 +8,21 @@
 import Foundation
 
 protocol FileManagerProtocol {
-    func createDirectory(url: URL) throws
-    func removeItem(url: URL) throws
-    func createFile(url: URL, contents: Data)
-    func contents(url: URL) -> Data?
+    func createDirectory(at url: URL, withIntermediateDirectories createIntermediates: Bool, attributes: [FileAttributeKey : Any]?) throws
+    func removeItem(at URL: URL) throws
+    func createFile(atPath path: String, contents data: Data?, attributes attr: [FileAttributeKey : Any]?) -> Bool
+    func contents(atPath path: String) -> Data?
+    func fileExists(atPath path: String) -> Bool
+    
     func recipeWizardCacheURL() -> URL
-    func fileExists(url: URL) -> Bool
+}
+
+extension FileManager: FileManagerProtocol {
+    func recipeWizardCacheURL() -> URL {
+        let cacheURL = FileManager.default.urls(
+            for: .cachesDirectory, in: .userDomainMask
+        ).first!
+        let recipeWizardCache = cacheURL.appendingPathComponent("RecipeWizard")
+        return recipeWizardCache
+    }
 }

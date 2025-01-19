@@ -5,13 +5,13 @@
 //  Created by Daniel Colman on 1/18/25.
 //
 
-import UIKit
-import Testing
+
 @testable import RecipeWizard
+import Testing
+import UIKit
 
 struct ImageDiskCacheTests {
     let sut: ImageDiskCache
-    let testImage = UIImage(named: "cake")!
     let mockFileManager = MockFileManager()
     
     init() throws {
@@ -19,9 +19,9 @@ struct ImageDiskCacheTests {
     }
     
     @Test func testSaveImage() async throws {
-        await sut.saveImage(id: "1", image: testImage)
+        await sut.saveImage(id: "1", image: MockRecipeData.cakeImage)
         let imageURL = mockFileManager.recipeWizardCacheURL().appendingPathComponent("1.jpg", conformingTo: .fileURL)
-        let fileExists = mockFileManager.fileExists(url: imageURL)
+        let fileExists = mockFileManager.fileExists(atPath: imageURL.path())
         #expect(fileExists)
     }
 
@@ -31,31 +31,31 @@ struct ImageDiskCacheTests {
     }
     
     @Test func testGetImageWhenOneDoesExist() async throws {
-        await sut.saveImage(id: "1", image: testImage)
+        await sut.saveImage(id: "1", image: MockRecipeData.cakeImage)
         let image = await sut.getImage(id: "1")
         #expect(image != nil)
     }
     
     @Test func testDeleteImage() async throws {
-        await sut.saveImage(id: "1", image: testImage)
-        await sut.saveImage(id: "2", image: testImage)
+        await sut.saveImage(id: "1", image: MockRecipeData.cakeImage)
+        await sut.saveImage(id: "2", image: MockRecipeData.cakeImage)
         await sut.deleteImage(id: "1")
-        let image1Exists = mockFileManager.fileExists(url: imageURL(name: "1.jpg"))
+        let image1Exists = mockFileManager.fileExists(atPath: imageURL(name: "1.jpg").path())
         print("1 \(image1Exists)")
-        let image2Exists = mockFileManager.fileExists(url: imageURL(name: "2.jpg"))
+        let image2Exists = mockFileManager.fileExists(atPath: imageURL(name: "2.jpg").path())
         print("2 \(image1Exists)")
         #expect(!image1Exists)
         #expect(image2Exists)
     }
     
     @Test func testDeleteCache() async throws {
-        await sut.saveImage(id: "1", image: testImage)
-        await sut.saveImage(id: "2", image: testImage)
-        await sut.saveImage(id: "3", image: testImage)
-        let existsBeforeDelete = mockFileManager.fileExists(url: mockFileManager.recipeWizardCacheURL())
+        await sut.saveImage(id: "1", image: MockRecipeData.cakeImage)
+        await sut.saveImage(id: "2", image: MockRecipeData.cakeImage)
+        await sut.saveImage(id: "3", image: MockRecipeData.cakeImage)
+        let existsBeforeDelete = mockFileManager.fileExists(atPath: mockFileManager.recipeWizardCacheURL().path())
         #expect(existsBeforeDelete)
         await sut.deleteCache()
-        let existsAfterDelete = mockFileManager.fileExists(url: mockFileManager.recipeWizardCacheURL())
+        let existsAfterDelete = mockFileManager.fileExists(atPath: mockFileManager.recipeWizardCacheURL().path())
         #expect(!existsAfterDelete)
     }
     
