@@ -10,6 +10,12 @@ import UIKit
 
 actor MockImageDiskCache: ImageDiskCacheProtocol {
     var cache: [String: UIImage] = [:]
+
+    init(){}
+    
+    init(cache: [String : UIImage]) {
+        self.cache = cache
+    }
     
     func getImage(id: String) async -> UIImage? {
         if let image = cache[id] {

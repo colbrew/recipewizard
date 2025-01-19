@@ -35,12 +35,10 @@ struct ImageLoader {
     private func fetchImage(url: URL) async throws -> UIImage? {
         let (data, response) = try await urlSession.data(from: url, delegate: nil)
         
-        // Ensure the response is valid
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             throw URLError(.badServerResponse)
         }
-        
-        // Convert data to UIImage
+
         return UIImage(data: data)
     }
 }

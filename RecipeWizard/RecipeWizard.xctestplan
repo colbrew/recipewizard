@@ -1,0 +1,44 @@
+{
+  "configurations" : [
+    {
+      "id" : "71BB2E61-F8F7-41E0-AEE3-14939D8B0488",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "environmentVariableEntries" : [
+      {
+        "key" : "resetCacheAtStart",
+        "value" : "true"
+      }
+    ],
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:RecipeWizard.xcodeproj",
+      "identifier" : "CE4CBA9A2D3AD26500A0447E",
+      "name" : "RecipeWizard"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:RecipeWizard.xcodeproj",
+        "identifier" : "CE4CBAAA2D3AD26600A0447E",
+        "name" : "RecipeWizardTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:RecipeWizard.xcodeproj",
+        "identifier" : "CE4CBAB42D3AD26600A0447E",
+        "name" : "RecipeWizardUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
