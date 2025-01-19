@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct RecipeImageView: View {
+    @Binding var homeVM: HomeViewModel
     let recipe: Recipe
     @State var image: UIImage?
-    @State var loadingFailed = false
+    @State var loadingState: LoadingState = .loading
     
     var body: some View {
         Group {
@@ -18,22 +19,30 @@ struct RecipeImageView: View {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFit()
-            } else if loadingFailed {
-                Text("Unable ot load image at this time.")
-            } else {
-                ProgressView()
+            } else if loadingState == .loading {
+                VStack(alignment: .center) {                ProgressView()
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .aspectRatio(1, contentMode: .fit)
+            } else if loadingState == .failure {
+                Image(systemName: "fork.knife.circle")
+                    .resizable()
+                    .scaledToFit()
             }
         }
         .task {
             do {
-                image = try await ImageLoader.loadImage(recipe)
+                loadingState = .loading
+                image = try await homeVM.imageLoader.loadImage(recipe)
             } catch {
-                loadingFailed = true
+                loadingState = .failure
             }
         }
     }
 }
 
 #Preview {
-    RecipeImageView(recipe: MockRecipeData.singleRecipe)
+    @Previewable @State var homeVM = HomeViewModel()
+    
+    RecipeImageView(homeVM: $homeVM, recipe: MockRecipeData.singleRecipe)
 }

@@ -11,30 +11,34 @@ struct HomeView: View {
     @State private var homeVM = HomeViewModel()
 
     var body: some View {
-        Text("Recipes Around the World")
-            .font(.largeTitle)
+        VStack {
+            Text("Recipe Wizard")
+                .font(.title)
+            CuisineFilterView(homeVM: $homeVM)
+                .font(.title3)
+            
+            ZStack {
+                List(homeVM.filteredRecipes, id: \.self) { recipe in
+                    RecipeView(homeVM: $homeVM,
+                               recipe: recipe)
+                }
+                .animation(.default, value: homeVM.filteredRecipes)
+                .refreshable {
+                    await homeVM.loadData()
+                }
+                .background(.clear)
+                
+                if homeVM.loadingState == .loading {
+                    ProgressView()
+                }
+                
+                if homeVM.loadingState == .failure {
+                    ErrorView(homeVM: $homeVM)
+                }
 
-        Menu("Cuisine Type") {
-            Picker(selection: $homeVM.filter, label: Text("Cuisine Type")) {
-                Text("all").tag("all")
-                Text("British").tag("British")
-                Text("Malaysian").tag("Malaysian")
             }
         }
-
-        ZStack {
-            List(homeVM.filteredRecipes, id: \.self) { recipe in
-                RecipeView(recipe: recipe)
-            }
-            .animation(.default, value: homeVM.filteredRecipes)
-            .refreshable {
-                await homeVM.loadData()
-            }
-
-            if homeVM.loadFailure {
-                ErrorView()
-            }
-        }
+        .background(.yellow)
         .task {
             await homeVM.loadData()
         }

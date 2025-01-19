@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct RecipeView: View {
+    @Binding var homeVM: HomeViewModel
     let recipe: Recipe
     
     var body: some View {
         HStack{
             VStack(alignment: .center) {
-                RecipeImageView(recipe: recipe)
+                RecipeImageView(homeVM: $homeVM,
+                                recipe: recipe)
                 HStack {
                     Text(recipe.name)
                         .font(.title3)
@@ -29,5 +31,7 @@ struct RecipeView: View {
 }
 
 #Preview {
-    RecipeView(recipe: MockRecipeData.singleRecipe)
+    @Previewable @State var homeVM = HomeViewModel()
+    
+    RecipeView(homeVM: $homeVM, recipe: MockRecipeData.singleRecipe)
 }

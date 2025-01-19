@@ -8,15 +8,21 @@
 import Foundation
 import UIKit
 
-actor ImageDiskCache {
+actor ImageDiskCache: ImageDiskCacheProtocol {
     let fileManager: FileManagerProtocol
     let recipeWizardCacheURL: URL
 
     init(fileManager: FileManagerProtocol = FileManager.default) {
         self.fileManager = fileManager
         self.recipeWizardCacheURL = fileManager.recipeWizardCacheURL()
-        if ProcessInfo.processInfo.environment["resetCacheAtStart"] == "true" {
+        #if DEBUG
+        let checkCacheReset = true
+        #else
+        let checkCacheReset = false
+        #endif
+        if checkCacheReset && ProcessInfo.processInfo.environment["resetCacheAtStart"] == "true" {
                 try? fileManager.removeItem(url: recipeWizardCacheURL)
+                URLCache.shared.removeAllCachedResponses()
         }
     }
     
@@ -46,15 +52,15 @@ actor ImageDiskCache {
         try? fileManager.removeItem(url: recipeWizardCacheURL)
     }
 
-    func setupDirectory() {
+    private func setupDirectory() {
         do {
             try fileManager.createDirectory(url: recipeWizardCacheURL)
         } catch {
-            print("unable to creat directory")
+            print("unable to create directory")
         }
     }
 
-    func imageURL(id: String) -> URL {
+    private func imageURL(id: String) -> URL {
         recipeWizardCacheURL.appendingPathComponent("\(id).jpg")
     }
 }

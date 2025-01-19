@@ -8,9 +8,16 @@
 import UIKit
 
 struct ImageLoader {
+    let diskCache: ImageDiskCacheProtocol
+    let urlSession: URLSessionProtocol
     
-    static let diskCache = ImageDiskCache()
-    static func loadImage(_ recipe: Recipe) async throws -> UIImage? {
+    init(diskCache: ImageDiskCacheProtocol = ImageDiskCache(),
+         urlSession: URLSessionProtocol = URLSession.shared) {
+        self.diskCache = diskCache
+        self.urlSession = urlSession
+    }
+    
+    func loadImage(_ recipe: Recipe) async throws -> UIImage? {
         if let image = await diskCache.getImage(id: recipe.id) {
             print("image from cache")
             return image
@@ -25,8 +32,8 @@ struct ImageLoader {
         }
     }
 
-    static func fetchImage(url: URL) async throws -> UIImage? {
-        let (data, response) = try await URLSession.shared.data(from: url)
+    private func fetchImage(url: URL) async throws -> UIImage? {
+        let (data, response) = try await urlSession.data(from: url, delegate: nil)
         
         // Ensure the response is valid
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
