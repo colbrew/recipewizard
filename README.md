@@ -11,25 +11,27 @@
 [RecipesFailure]: https://github.com/colbrew/recipewizard/raw/main/FetchRecipesFailure.png "Fetch Recipes Failure"
 [ImageFailure]: https://github.com/colbrew/recipewizard/raw/main/ImageFailure.png "Load Image Failure"
 
-[RecipeWizard Demo](https://drive.google.com/file/d/1NYE7dJtuLUfl9zc54fwbfPL6OEmHHnzc/view?usp=share_link)
+[RecipeWizard Demo Video](https://drive.google.com/file/d/1NYE7dJtuLUfl9zc54fwbfPL6OEmHHnzc/view?usp=share_link)
 
-[RecipeWizard Recover From Failure](https://drive.google.com/file/d/1NYE7dJtuLUfl9zc54fwbfPL6OEmHHnzc/view?usp=share_link)
+[RecipeWizard Recover From Failure Video](https://drive.google.com/file/d/1NYE7dJtuLUfl9zc54fwbfPL6OEmHHnzc/view?usp=share_link)
 
 ### Focus Areas: What specific areas of the project did you prioritize? Why did you choose to focus on these areas?
-    1. Basic UI and Functionality
-    2. Disk Caching
-    3. Tests
+
+1. Basic UI and Functionality
+2. Disk Caching
+3. Tests
     
-    These seemed to be the core parts of the challenge, and gave me an opportunity to demonstrate my skills in different areas. I also wanted to spend some time trying out the @Observable macro (I've been doing a lot of platform work lately), trying out Swift Testing, and learning about different approaches to caching and implementing my own version.
+These seemed to be the core parts of the challenge, and gave me an opportunity to demonstrate my skills in different areas. I also wanted to spend some time trying out the `@Observable` macro (I've been doing a lot of platform work lately), trying out Swift Testing, and learning about different approaches to caching and implementing my own version.
      
 ### Time Spent: Approximately how long did you spend working on this project? How did you allocate your time?
 
-**7 hours**
-30 minutes: planning and setup
-2 hours: app functionality and UI
-30 minute: recipe filtering feature
-2 hours: disk caching
-2 hours: writing protocols, refactoring and writing tests
+| **7 hours** | |
+| --- | --- |
+| 30 minutes | Planning and Setup |
+| 2 hours | App Functionality and UI |
+| 30 minute | Recipe Filtering Feature |
+| 2 hours | Disk Caching |
+| 2 hours | Writing Protocols, Refactoring and Writing Tests |
 
 ### Trade-offs and Decisions: Did you make any significant trade-offs in your approach?
 
