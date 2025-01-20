@@ -49,4 +49,4 @@ The disk caching felt very exercis-y. I appreciate that is a nice way to show a 
 
 In a production app, I would write UI tests (at the very least), spend additional time on accessibility, localization (if needed), performance testing and app optimization. I would also add logging to be able to track app perfomance and user behavior. I would also likely add navigation.
 
-> Note: You can set the `resetCacheAtStart` environment variable to true in the RecipeWizard scheme if you want all caches to be purged at the start of each run.
+> Note: You can set the `resetCacheAtStart` environment variable to `true` in the RecipeWizard scheme if you want all caches to be purged at the start of each run.
