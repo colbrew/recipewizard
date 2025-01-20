@@ -6,10 +6,10 @@
 | ----------- | -------------- | --------------- | ------------- |
 | ![alt text][RecipeWizard] | ![alt text][CuisineFilter] | ![alt text][RecipesFailure] | ![alt text][ImageFailure] |
 
-[RecipeWizard]: https://github.com/colbrew/recipewizard/raw/main/RecipeWizard "Recipe Wizard"
-[CuisineFilter]: https://github.com/colbrew/recipewizard/raw/main/CuisineFilter "Cuisine Filter"
-[RecipesFailure]: https://github.com/colbrew/recipewizard/raw/main/FetchRecipesFailure "Fetch Recipes Failure"
-[ImageFailure]: https://github.com/colbrew/recipewizard/raw/main/ImageFailure "Load Image Failure"
+[RecipeWizard]: https://github.com/colbrew/recipewizard/raw/main/RecipeWizard.jpg "Recipe Wizard"
+[CuisineFilter]: https://github.com/colbrew/recipewizard/raw/main/CuisineFilter.jpg "Cuisine Filter"
+[RecipesFailure]: https://github.com/colbrew/recipewizard/raw/main/FetchRecipesFailure.jpg "Fetch Recipes Failure"
+[ImageFailure]: https://github.com/colbrew/recipewizard/raw/main/ImageFailure.jpg "Load Image Failure"
 
 [RecipeWizard Demo Video](https://drive.google.com/file/d/1NYE7dJtuLUfl9zc54fwbfPL6OEmHHnzc/view?usp=share_link)
 
