@@ -12,7 +12,7 @@ struct HomeView: View {
 
     var body: some View {
         VStack {
-            Text("Recipe Wizard")
+            Text(Constants.title)
                 .font(.title)
             CuisineFilterView(homeVM: $homeVM)
                 .font(.title3)
@@ -27,15 +27,16 @@ struct HomeView: View {
                     await homeVM.loadRecipes()
                 }
                 .background(.clear)
-                
+
                 if homeVM.loadingState == .loading {
                     ProgressView()
+                } else if homeVM.loadingState == .doneLoadingEmpty {
+                    ErrorView(homeVM: $homeVM,
+                              message: Constants.noRecipes)
+                } else if homeVM.loadingState == .failure {
+                    ErrorView(homeVM: $homeVM,
+                              message: Constants.failFetchingRecipes)
                 }
-                
-                if homeVM.loadingState == .failure {
-                    ErrorView(homeVM: $homeVM)
-                }
-
             }
         }
         .background(.yellow)

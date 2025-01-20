@@ -9,18 +9,19 @@ import SwiftUI
 
 struct ErrorView: View {
     @Binding var homeVM: HomeViewModel
-    
+    let message: String
+
     var body: some View {
         VStack(alignment: .center) {
             Image(systemName: "fork.knife")
                 .resizable()
                 .frame(width: 100, height: 100)
                 .padding()
-            Text("We're having trouble getting the cookbook.\n Try again in a bit.")
+            Text(message)
                 .frame(maxWidth: .infinity)
                 .multilineTextAlignment(.center)
                 .padding()
-            Button("Try Again") {
+            Button(Constants.tryAgain) {
                 Task {
                     await homeVM.loadRecipes()
                 }
@@ -35,5 +36,6 @@ struct ErrorView: View {
 #Preview {
     @Previewable @State var homeVM = HomeViewModel()
     
-    ErrorView(homeVM: $homeVM)
+    ErrorView(homeVM: $homeVM,
+              message: Constants.failFetchingRecipes)
 }

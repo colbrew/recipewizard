@@ -31,7 +31,7 @@ class HomeViewModel {
             let decodedResponse = try JSONDecoder().decode(Recipes.self, from: data)
             recipes = decodedResponse.recipes
             if recipes.isEmpty {
-                loadingState = .failure
+                loadingState = .doneLoadingEmpty
                 return
             }
             let downloadedCuisines = recipes.map { $0.cuisine }

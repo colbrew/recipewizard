@@ -10,8 +10,8 @@ struct CuisineFilterView: View {
     @Binding var homeVM: HomeViewModel
 
     var body: some View {
-        Menu("Cuisine Type") {
-            Picker(selection: $homeVM.filter, label: Text("Cuisine Type")) {
+        Menu(Constants.cuisineType) {
+            Picker(selection: $homeVM.filter, label: Text(Constants.cuisineType)) {
                 ForEach(Array(homeVM.cuisines).sorted(), id: \.self){ cuisine in
                     Text(cuisine).tag(cuisine)
                 }
