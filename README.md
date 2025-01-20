@@ -4,7 +4,7 @@
 
 | Home Screen | Cuisine Filter | Recipes Failure | Image Failure |
 | ----------- | -------------- | --------------- | ------------- |
-| ![alt text][RecipeWizard] | ![alt text]][CusineFilter] | ![alt text][RecipesFailure] | ![alt text][ImageFailure] |
+| ![alt text][RecipeWizard] | ![alt text]][CuisineFilter] | ![alt text][RecipesFailure] | ![alt text][ImageFailure] |
 
 [RecipeWizard]: https://github.com/colbrew/recipewizard/raw/main/RecipeWizard.png "Recipe Wizard"
 [CuisineFilter]: https://github.com/colbrew/recipewizard/raw/main/CuisineFilter.png "Cuisine Filter"
