@@ -13,20 +13,20 @@ struct ImageLoaderTests {
 
     @Test func testLoadImageNoCache () async throws {
         let sut = ImageLoader(diskCache: MockImageDiskCache(),
-                          urlSession: MockURLSession())
+                              urlSession: MockURLSession())
         let image = try await sut.loadImage(MockRecipeData.singleRecipe)
 
-        #expect(image?.size == MockRecipeData.cakeImage.size)
+        #expect(image.size == MockRecipeData.cakeImage.size)
     }
 
     @Test func testLoadImageFromCache () async throws {
         let cacheWithIceCream = MockImageDiskCache(cache: ["1": MockRecipeData.iceCreamImage])
         let sut = ImageLoader(diskCache: cacheWithIceCream,
-                          urlSession: MockURLSession())
+                              urlSession: MockURLSession())
 
         let image = try await sut.loadImage(MockRecipeData.singleRecipe)
 
-        #expect(image?.size == MockRecipeData.iceCreamImage.size)
+        #expect(image.size == MockRecipeData.iceCreamImage.size)
     }
 
     @Test func testLoadImageURLSessionThrows () async throws {

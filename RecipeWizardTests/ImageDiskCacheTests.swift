@@ -40,10 +40,9 @@ struct ImageDiskCacheTests {
         await sut.saveImage(id: "1", image: MockRecipeData.cakeImage)
         await sut.saveImage(id: "2", image: MockRecipeData.cakeImage)
         await sut.deleteImage(id: "1")
+        
         let image1Exists = mockFileManager.fileExists(atPath: imageURL(name: "1.jpg").path())
-        print("1 \(image1Exists)")
         let image2Exists = mockFileManager.fileExists(atPath: imageURL(name: "2.jpg").path())
-        print("2 \(image1Exists)")
         #expect(!image1Exists)
         #expect(image2Exists)
     }

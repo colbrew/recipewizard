@@ -41,7 +41,7 @@ actor ImageDiskCache: ImageDiskCacheProtocol {
         if let data = image.jpegData(compressionQuality: 1.0) {
             let imageSaved = fileManager.createFile(atPath: imageURL(id: id).path(), contents: data, attributes: nil)
             if !imageSaved {
-                print("Unable to save image")
+                print("Unable to save image") // in production, this would be logging
             }
         }
     }
@@ -61,7 +61,7 @@ actor ImageDiskCache: ImageDiskCacheProtocol {
                                             withIntermediateDirectories: true,
                                             attributes: nil)
         } catch {
-            print("unable to create directory")
+            print("unable to create directory") // in production, this would be logging
         }
     }
 

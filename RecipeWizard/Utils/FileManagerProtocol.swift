@@ -8,9 +8,13 @@
 import Foundation
 
 protocol FileManagerProtocol {
-    func createDirectory(at url: URL, withIntermediateDirectories createIntermediates: Bool, attributes: [FileAttributeKey : Any]?) throws
+    func createDirectory(at url: URL,
+                         withIntermediateDirectories createIntermediates: Bool,
+                         attributes: [FileAttributeKey : Any]?) throws
     func removeItem(at URL: URL) throws
-    func createFile(atPath path: String, contents data: Data?, attributes attr: [FileAttributeKey : Any]?) -> Bool
+    func createFile(atPath path: String,
+                    contents data: Data?,
+                    attributes attr: [FileAttributeKey : Any]?) -> Bool
     func contents(atPath path: String) -> Data?
     func fileExists(atPath path: String) -> Bool
     
