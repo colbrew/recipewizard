@@ -5,12 +5,14 @@
 | Home Screen | Cuisine Filter | Recipes Failure | Image Failure |
 | ----------- | -------------- | --------------- | ------------- |
 | ![alt text][RecipeWizard] | ![alt text]][CusineFilter] | ![alt text][RecipesFailure] | ![alt text][ImageFailure] |
+
 [RecipeWizard]: https://github.com/colbrew/recipewizard/raw/main/RecipeWizard.png "Recipe Wizard"
 [CuisineFilter]: https://github.com/colbrew/recipewizard/raw/main/CuisineFilter.png "Cuisine Filter"
 [RecipesFailure]: https://github.com/colbrew/recipewizard/raw/main/FetchRecipesFailure.png "Fetch Recipes Failure"
 [ImageFailure]: https://github.com/colbrew/recipewizard/raw/main/ImageFailure.png "Load Image Failure"
 
 [RecipeWizard Demo](https://drive.google.com/file/d/1NYE7dJtuLUfl9zc54fwbfPL6OEmHHnzc/view?usp=share_link)
+
 [RecipeWizard Recover From Failure](https://drive.google.com/file/d/1NYE7dJtuLUfl9zc54fwbfPL6OEmHHnzc/view?usp=share_link)
 
 ### Focus Areas: What specific areas of the project did you prioritize? Why did you choose to focus on these areas?
