@@ -51,7 +51,7 @@ struct ImageLoaderTests {
         let sut = ImageLoader(diskCache: MockImageDiskCache(),
                               urlSession: MockURLSessionBadData())
 
-        await #expect(throws: RecipeError.failureFetchingImage) {
+        await #expect(throws: RecipeWizardError.failureFetchingImage) {
             _ = try await sut.loadImage(MockRecipeData.singleRecipe)
         }
     }

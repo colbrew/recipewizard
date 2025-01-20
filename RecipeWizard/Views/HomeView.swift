@@ -24,7 +24,7 @@ struct HomeView: View {
                 }
                 .animation(.default, value: homeVM.filteredRecipes)
                 .refreshable {
-                    await homeVM.loadData()
+                    await homeVM.loadRecipes()
                 }
                 .background(.clear)
                 
@@ -40,7 +40,7 @@ struct HomeView: View {
         }
         .background(.yellow)
         .task {
-            await homeVM.loadData()
+            await homeVM.loadRecipes()
         }
     }
 }

@@ -22,7 +22,7 @@ struct ErrorView: View {
                 .padding()
             Button("Try Again") {
                 Task {
-                    await homeVM.loadData()
+                    await homeVM.loadRecipes()
                 }
             }
         }

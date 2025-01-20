@@ -16,8 +16,9 @@ struct ImageLoader {
         self.diskCache = diskCache
         self.urlSession = urlSession
     }
-    
-    func loadImage(_ recipe: Recipe) async throws -> UIImage? {
+
+    /// Loads a recipe image. Checks the disk cache first then
+    func loadImage(_ recipe: Recipe) async throws -> UIImage {
         if let image = await diskCache.getImage(id: recipe.id) {
             print("image from cache")
             return image
@@ -28,7 +29,7 @@ struct ImageLoader {
             await diskCache.saveImage(id: recipe.id, image: downloadedImage)
             return downloadedImage
         } else {
-            throw RecipeError.failureFetchingImage
+            throw RecipeWizardError.failureFetchingImage
         }
     }
 

@@ -24,7 +24,7 @@ class HomeViewModel {
 
     private let recipesURL = URL(string: "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json")!
 
-    func loadData() async {
+    func loadRecipes() async {
         loadingState = .loading
         do {
             let (data, _) = try await URLSession.shared.data(from: recipesURL)
