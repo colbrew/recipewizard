@@ -30,6 +30,10 @@ class HomeViewModel {
             let (data, _) = try await URLSession.shared.data(from: recipesURL)
             let decodedResponse = try JSONDecoder().decode(Recipes.self, from: data)
             recipes = decodedResponse.recipes
+            if recipes.isEmpty {
+                loadingState = .failure
+                return
+            }
             let downloadedCuisines = recipes.map { $0.cuisine }
             downloadedCuisines.forEach { cuisine in
                 cuisines.insert(cuisine)
