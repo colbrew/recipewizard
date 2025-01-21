@@ -20,8 +20,9 @@
 1. Basic UI and Functionality
 2. Disk Caching
 3. Tests
+4. Swift 6 strict concurrency
     
-These seemed to be the core parts of the challenge, and gave me an opportunity to demonstrate my skills in different areas. I also wanted to spend some time trying out the `@Observable` macro (I've been doing a lot of platform work lately), trying out Swift Testing, turning on Swift 6 strict concurrency and learning about different approaches to caching and implementing my own version.
+These seemed to be the core parts of the challenge, and gave me an opportunity to demonstrate my skills in different areas. I also wanted to spend some time trying out the `@Observable` macro (I've been doing a lot of platform work lately), trying out Swift Testing, going on the Swift 6 strict concurrency ride and learning about different approaches to caching and implementing my own version.
      
 ### Time Spent: Approximately how long did you spend working on this project? How did you allocate your time?
 
