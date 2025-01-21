@@ -21,17 +21,18 @@
 2. Disk Caching
 3. Tests
     
-These seemed to be the core parts of the challenge, and gave me an opportunity to demonstrate my skills in different areas. I also wanted to spend some time trying out the `@Observable` macro (I've been doing a lot of platform work lately), trying out Swift Testing, and learning about different approaches to caching and implementing my own version.
+These seemed to be the core parts of the challenge, and gave me an opportunity to demonstrate my skills in different areas. I also wanted to spend some time trying out the `@Observable` macro (I've been doing a lot of platform work lately), trying out Swift Testing, turning on Swift 6 strict concurrency and learning about different approaches to caching and implementing my own version.
      
 ### Time Spent: Approximately how long did you spend working on this project? How did you allocate your time?
 
-| **7 hours** | |
+| **9 hours** | |
 | --- | --- |
 | 30 minutes | Planning and Setup |
 | 2 hours | App Functionality and UI |
 | 30 minute | Recipe Filtering Feature |
 | 2 hours | Disk Caching |
-| 2 hours | Writing Protocols, Refactoring and Writing Tests |
+| 2.5 hours | Writing Protocols, Refactoring and Writing Tests |
+| 1.5 hours | Swift 6 Strict Concurrency |
 
 ### Trade-offs and Decisions: Did you make any significant trade-offs in your approach?
 
