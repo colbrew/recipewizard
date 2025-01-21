@@ -11,12 +11,13 @@ import Testing
 import UIKit
 
 struct ImageDiskCacheTests {
+    let recipeWizardCacheURL = URL(string: "RecipeWizardCache")!
+    
     @Test func testSaveImage() async throws {
-        let mockFileManager = MockFileManager()
-        let sut = ImageDiskCache(fileManager: mockFileManager)
+        let sut = ImageDiskCache(fileManager: MockFileManager())
         await sut.saveImage(id: "1", image: MockRecipeData.cakeImage)
-        let imageURL = mockFileManager.recipeWizardCacheURL().appendingPathComponent("1.jpg", conformingTo: .fileURL)
-        let fileExists = mockFileManager.fileExists(atPath: imageURL.path())
+        let imageURL = recipeWizardCacheURL.appendingPathComponent("1.jpg", conformingTo: .fileURL)
+        let fileExists = MockFileManager().fileExists(atPath: imageURL.path())
         #expect(fileExists)
     }
 
@@ -37,7 +38,7 @@ struct ImageDiskCacheTests {
     
     @Test func testDeleteImage() async throws {
         let mockFileManager = MockFileManager()
-        let sut = ImageDiskCache(fileManager: mockFileManager)
+        let sut = ImageDiskCache(fileManager: MockFileManager())
         await sut.saveImage(id: "1", image: MockRecipeData.cakeImage)
         await sut.saveImage(id: "2", image: MockRecipeData.cakeImage)
         await sut.deleteImage(id: "1")
@@ -50,7 +51,7 @@ struct ImageDiskCacheTests {
     
     @Test func testDeleteCache() async throws {
         let mockFileManager = MockFileManager()
-        let sut = ImageDiskCache(fileManager: mockFileManager)
+        let sut = ImageDiskCache(fileManager: MockFileManager())
         await sut.saveImage(id: "1", image: MockRecipeData.cakeImage)
         await sut.saveImage(id: "2", image: MockRecipeData.cakeImage)
         await sut.saveImage(id: "3", image: MockRecipeData.cakeImage)
