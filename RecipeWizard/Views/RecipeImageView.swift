@@ -33,7 +33,7 @@ struct RecipeImageView: View {
         .task {
             do {
                 loadingState = .loading
-                image = try await homeVM.imageLoader.loadImage(recipe)
+                image = try await homeVM.getImage(recipe)
             } catch {
                 loadingState = .failure
             }

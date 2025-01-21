@@ -8,6 +8,7 @@
 @testable import RecipeWizard
 import Testing
 
+@MainActor
 struct HomeViewModelTests {
     let sut: HomeViewModel
 

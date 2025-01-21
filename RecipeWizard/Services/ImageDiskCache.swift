@@ -56,12 +56,14 @@ actor ImageDiskCache: ImageDiskCacheProtocol {
     }
 
     private func setupDirectory() {
-        do {
-            try fileManager.createDirectory(at: recipeWizardCacheURL,
-                                            withIntermediateDirectories: true,
-                                            attributes: nil)
-        } catch {
-            print("unable to create directory") // in production, this would be logging
+        if !fileManager.fileExists(atPath: recipeWizardCacheURL.path) {
+            do {
+                try fileManager.createDirectory(at: recipeWizardCacheURL,
+                                                withIntermediateDirectories: true,
+                                                attributes: nil)
+            } catch {
+                print("unable to create directory") // in production, this would be logging
+            }
         }
     }
 
