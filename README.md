@@ -31,8 +31,8 @@ These seemed to be the core parts of the challenge, and gave me an opportunity t
 | 2 hours | App Functionality and UI |
 | 30 minute | Recipe Filtering Feature |
 | 2 hours | Disk Caching |
-| 2.5 hours | Writing Protocols, Refactoring and Writing Tests |
-| 1.5 hours | Swift 6 Strict Concurrency |
+| 2 hours | Writing Protocols, Refactoring and Writing Tests |
+| 2 hours | Swift 6 Strict Concurrency |
 
 ### Trade-offs and Decisions: Did you make any significant trade-offs in your approach?
 
