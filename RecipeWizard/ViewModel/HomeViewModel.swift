@@ -10,8 +10,6 @@ import SwiftUI
 @Observable
 @MainActor
 class HomeViewModel {
-    let imageLoader = ImageLoader()
-
     var recipes = [Recipe]()
     var filteredRecipes: [Recipe] {
         if filter == "All" {
@@ -23,9 +21,15 @@ class HomeViewModel {
     var loadingState: LoadingState = .loading
     var filter: String = "All"
 
+    private let imageLoader = ImageLoader()
+    private let urlSession: URLSessionProtocol
     private let recipesURL = URL(
         string: "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json")!
 
+    init(urlSession: URLSessionProtocol = URLSession.shared) {
+        self.urlSession = urlSession
+    }
+    
     func loadRecipes() async {
         loadingState = .loading
         do {
@@ -45,11 +49,13 @@ class HomeViewModel {
         }
     }
 
-    nonisolated func fetchRecipes() async throws -> [Recipe] {
-        let (data, _) = try await URLSession.shared.data(from: recipesURL)
-        let decodedResponse = try JSONDecoder().decode(Recipes.self, from: data)
-
-        return decodedResponse.recipes
+    private func fetchRecipes() async throws -> [Recipe] {
+        return try await Task { [urlSession] in
+            let (data, _) = try await urlSession.data(from: recipesURL, delegate: nil)
+            let decodedResponse = try JSONDecoder().decode(Recipes.self, from: data)
+            
+            return decodedResponse.recipes
+        }.value
     }
 
     func getImage(_ recipe: Recipe) async throws -> UIImage {

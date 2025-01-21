@@ -43,3 +43,17 @@ class MockURLSessionBadData: URLSessionProtocol {
         return (Data(), successResponse)
     }
 }
+
+class MockURLSessionRecipes: URLSessionProtocol {
+    func data(from url: URL, delegate: (any URLSessionTaskDelegate)?) async throws -> (Data, URLResponse) {
+        let recipeData = try JSONEncoder().encode(Recipes(recipes: MockRecipeData.allRecipes))
+        return (recipeData, successResponse)
+    }
+}
+
+class MockURLSessionNoRecipes: URLSessionProtocol {
+    func data(from url: URL, delegate: (any URLSessionTaskDelegate)?) async throws -> (Data, URLResponse) {
+        let recipeData = try JSONEncoder().encode(Recipes(recipes: []))
+        return (recipeData, successResponse)
+    }
+}
